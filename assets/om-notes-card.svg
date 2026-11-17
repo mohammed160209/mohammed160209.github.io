@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title">
+  <title id="title">OM Notes</title>
+  <rect width="1200" height="900" fill="#eff3ee"/>
+  <g fill="none" stroke="#1f3a2d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M547 208h78l35 35v105H547z"/><path d="M625 208v35h35M568 278h70M568 300h48"/>
+  </g>
+  <text x="600" y="495" text-anchor="middle" fill="#1f3a2d" font-family="Arial, sans-serif" font-size="125" font-weight="700" letter-spacing="-6">OM NOTES</text>
+</svg>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F5F5DB">
+  <meta name="description" content="YŌJŌ was an exploration of everyday matcha for India. Explore the brand, drink ideas and the thinking behind the concept.">
+  <title>YŌJŌ — everyday matcha, imagined</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    @font-face{font-family:Londrina;src:url("fonts/LondrinaSolid-normal-400-latin.woff2") format("woff2");font-display:swap}
+    @font-face{font-family:Gochi;src:url("fonts/GochiHand-normal-400-latin.woff2") format("woff2");font-display:swap}
+    @font-face{font-family:Manrope;src:url("fonts/Manrope-var-latin.woff2") format("woff2");font-display:swap}
+    :root{
+      --cream:#F5F5DB;--paper:#FFFEF0;--forest:#104817;--ink:#1F2C18;
+      --muted:#506044;--sage:#DCE8BC;--lime:#CDEB83;--line:rgba(16,72,23,.18);
+      --display:Londrina,Georgia,serif;--body:Manrope,Arial,sans-serif;--hand:Gochi,cursive;
+      --max:1280px;--ease:cubic-bezier(.22,1,.36,1)
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:96px}
+    body{margin:0;color:var(--ink);background:var(--cream);font-family:var(--body);-webkit-font-smoothing:antialiased}
+    body.menu-open{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit}
+    button{font:inherit}
+    :focus-visible{outline:3px solid #4e8d30;outline-offset:4px}
+    .skip{position:fixed;left:16px;top:-100px;z-index:100;background:var(--forest);color:var(--cream);padding:12px 18px}
+    .skip:focus{top:16px}
+    .wrap{width:min(calc(100% - 64px),var(--max));margin-inline:auto}
+    .eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .display{font-family:var(--display);font-weight:400;letter-spacing:-.035em;line-height:.91}
+    .scribble{font-family:var(--hand);font-weight:400}
+    .button{min-height:48px;padding:12px 22px;display:inline-flex;align-items:center;justify-content:center;gap:12px;border:1px solid var(--forest);border-radius:999px;text-decoration:none;font-size:.9rem;font-weight:800;transition:transform .25s var(--ease),background .25s,color .25s}
+    .button:hover{transform:translateY(-3px)}
+    .button--solid{background:var(--forest);color:var(--cream)}
+    .button--solid:hover{background:#236630}
+    .button--outline:hover{background:var(--forest);color:var(--cream)}
+    .header{position:fixed;inset:14px 0 auto;z-index:50;pointer-events:none}
+    .header__inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 28px;border:1px solid var(--line);border-radius:999px;background:rgba(255,254,240,.94);box-shadow:0 12px 36px rgba(16,72,23,.09);backdrop-filter:blur(16px);pointer-events:auto}
+    .logo{font-family:var(--display);font-size:2.2rem;line-height:1;text-decoration:none;color:var(--forest);letter-spacing:-.04em}
+    .nav{display:flex;align-items:center;gap:clamp(18px,3vw,42px)}
+    .nav a{text-decoration:none;font-size:.86rem;font-weight:800}
+    .nav a:hover{text-decoration:underline;text-underline-offset:6px}
+    .header__action{white-space:nowrap}
+    .menu-toggle{display:none;width:44px;height:44px;border:0;border-radius:50%;background:var(--forest);color:var(--cream);cursor:pointer}
+    .menu-toggle span{display:block;width:18px;height:2px;margin:5px auto;background:currentColor}
+    .mobile-menu{display:none}
+    .hero{position:relative;height:100vh;height:100svh;padding:clamp(105px,13vh,140px) 0 0;overflow:hidden;background:radial-gradient(circle at 50% 70%,#e4edbb 0,transparent 42%),var(--cream)}
+    .hero__inner{position:relative;z-index:2;text-align:center}
+    .status{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-size:.73rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+    .status::before{content:"";width:8px;height:8px;border-radius:50%;background:#669f42}
+    .hero h1{max-width:900px;margin:22px auto 0;color:var(--forest);font-size:clamp(3.8rem,7vw,7.8rem)}
+    .hero h1 span{display:block}
+    .hero__sub{max-width:550px;margin:26px auto 0;font-size:clamp(1rem,1.55vw,1.18rem);line-height:1.6}
+    .hero__actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .hero__visual{position:relative;width:min(540px,54vw);margin:22px auto 0;aspect-ratio:1.5/1}
+    .hero__visual::before{content:"";position:absolute;inset:14% 9% 0;border-radius:50%;background:#c5dc89;filter:blur(46px);opacity:.7}
+    .hero__visual img{position:relative;width:100%;height:auto;mix-blend-mode:multiply;mask-image:radial-gradient(ellipse 48% 52% at 50% 50%,#000 65%,transparent 100%)}
+    .hero__note{position:absolute;z-index:3;top:47%;left:calc(50% + 215px);transform:rotate(-9deg);font-size:clamp(1.25rem,2vw,2rem);color:var(--forest)}
+    .hero__leaf{position:absolute;color:var(--forest);opacity:.55;font-family:var(--hand);font-size:clamp(3rem,6vw,6rem);line-height:1;pointer-events:none}
+    .hero__leaf--a{top:23%;left:6%;transform:rotate(-25deg)}
+    .hero__leaf--b{top:35%;right:7%;transform:rotate(25deg)}
+    .marquee{position:relative;z-index:4;overflow:hidden;background:var(--forest);color:var(--cream);border-block:1px solid var(--forest)}
+    .marquee__track{display:flex;width:max-content;animation:marquee 24s linear infinite}
+    .marquee__track span{padding:13px 0;font-family:var(--display);font-size:clamp(1.4rem,2vw,2rem);white-space:nowrap}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    .section{padding:clamp(76px,10vw,150px) 0}
+    .section-title{margin:14px 0 0;font-size:clamp(3.3rem,7vw,7.4rem);color:var(--forest)}
+    .section-intro{max-width:600px;font-size:clamp(1rem,1.4vw,1.17rem);line-height:1.65;color:var(--muted)}
+    .intro{background:var(--paper)}
+    .intro__grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(40px,8vw,130px);align-items:center}
+    .intro__copy p{font-size:clamp(1.15rem,2vw,1.6rem);line-height:1.48}
+    .intro__copy p+p{margin-top:20px}
+    .intro__aside{position:relative;min-height:440px;padding:44px;display:flex;flex-direction:column;justify-content:space-between;background:var(--sage);border-radius:28px;overflow:hidden}
+    .intro__aside::after{content:"";position:absolute;width:340px;height:340px;border:2px solid rgba(16,72,23,.16);border-radius:50%;right:-100px;bottom:-100px;box-shadow:0 0 0 45px rgba(16,72,23,.035),0 0 0 90px rgba(16,72,23,.025)}
+    .intro__aside .scribble{position:relative;z-index:1;font-size:clamp(2.7rem,5vw,5rem);line-height:1;max-width:340px;color:var(--forest);transform:rotate(-6deg)}
+    .intro__aside .eyebrow{position:relative;z-index:1;max-width:230px;line-height:1.5}
+    .drinks{overflow:hidden}
+    .drinks__heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px}
+    .drinks__heading .section-intro{max-width:390px;margin:0}
+    .drink-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .drink{min-width:0;padding:12px 12px 22px;border:1px solid var(--line);border-radius:22px;background:var(--paper);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+    .drink:hover{transform:translateY(-8px);box-shadow:0 20px 45px rgba(16,72,23,.12)}
+    .drink__image{min-height:280px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;border-radius:15px}
+    .drink__image img{width:92%;height:92%;object-fit:contain}
+    .drink--strawberry .drink__image{background:#F9DCCF}
+    .drink--blueberry .drink__image{background:#DDE1F3}
+    .drink--ube .drink__image{background:#E9D8EE}
+    .drink--vanilla .drink__image{background:#E8E8CD}
+    .drink__meta{margin:20px 10px 7px;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .drink h3{margin:0 10px;font-family:var(--display);font-size:clamp(2rem,2.7vw,3rem);line-height:1;color:var(--forest);font-weight:400}
+    .drink p{margin:12px 10px 0;font-size:.9rem;line-height:1.55;color:var(--muted)}
+    .idea{background:var(--forest);color:var(--cream);overflow:hidden}
+    .idea .section-title{color:var(--cream)}
+    .idea .section-intro{color:rgba(245,245,219,.83)}
+    .idea__top{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end}
+    .idea__grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:70px;border-top:1px solid rgba(245,245,219,.27)}
+    .idea__item{padding:32px 28px 0 0;min-height:230px}
+    .idea__item+.idea__item{padding-left:28px;border-left:1px solid rgba(245,245,219,.27)}
+    .idea__item span{font-family:var(--hand);font-size:1.8rem;color:var(--lime)}
+    .idea__item h3{font-family:var(--display);font-size:2.25rem;font-weight:400;margin:28px 0 10px}
+    .idea__item p{max-width:330px;line-height:1.55;color:rgba(245,245,219,.8);font-size:.94rem}
+    .archive{background:var(--paper)}
+    .archive__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,8vw,140px);align-items:center}
+    .archive__visual{position:relative;aspect-ratio:1/1;display:grid;place-items:center;border-radius:28px;background:#dce7b9;overflow:hidden}
+    .archive__visual::before{content:"";position:absolute;width:65%;height:65%;border:2px solid rgba(16,72,23,.22);border-radius:50%;box-shadow:0 0 0 36px rgba(16,72,23,.045),0 0 0 72px rgba(16,72,23,.035)}
+    .archive__visual img{position:relative;width:96%;height:96%;object-fit:cover;mix-blend-mode:multiply;mask-image:radial-gradient(ellipse 48% 52% at 50% 50%,#000 65%,transparent 100%)}
+    .archive__copy p{max-width:560px;line-height:1.65;color:var(--muted);font-size:1.08rem}
+    .archive__copy p+p{margin-top:18px}
+    .archive__tag{display:inline-block;margin-top:22px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;font-size:.77rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--forest)}
+    .footer{padding:90px 0 28px;background:var(--forest);color:var(--cream)}
+    .footer__top{display:flex;justify-content:space-between;gap:30px;align-items:end}
+    .footer__title{margin:12px 0 0;font-size:clamp(5rem,17vw,17rem);line-height:.78}
+    .footer__note{max-width:260px;line-height:1.5;font-size:.95rem}
+    .footer__bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:90px;padding-top:24px;border-top:1px solid rgba(245,245,219,.25);font-size:.78rem}
+    .footer__bottom a{text-underline-offset:4px}
+    @media(max-width:1100px){
+      .drink-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero__note{left:calc(50% + 160px)}
+    }
+    @media(max-width:760px){
+      .wrap{width:min(calc(100% - 36px),var(--max))}
+      .header{top:10px}
+      .header__inner{height:62px;padding:0 17px}
+      .header .nav,.header__action{display:none}
+      .menu-toggle{display:block}
+      .mobile-menu{position:fixed;inset:82px 18px auto;display:flex;flex-direction:column;padding:18px;border:1px solid var(--line);border-radius:22px;background:var(--paper);box-shadow:0 28px 60px rgba(16,72,23,.2);opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .25s,transform .25s,visibility .25s;pointer-events:none}
+      .mobile-menu.is-open{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+      .mobile-menu a{padding:15px 10px;text-decoration:none;font-family:var(--display);font-size:2rem;color:var(--forest)}
+      .mobile-menu a+a{border-top:1px solid var(--line)}
+      .hero{height:100vh;height:100svh;padding-top:clamp(100px,14vh,130px)}
+      .hero h1{font-size:clamp(4.4rem,15vw,7rem);margin-top:22px}
+      .hero__sub{margin-top:20px}
+      .hero__visual{width:min(580px,100%);margin:26px auto 0}
+      .hero__note{top:auto;left:auto;right:1%;bottom:7%;font-size:1.6rem}
+      .hero__leaf{display:none}
+      .intro__grid,.archive__grid,.idea__top{grid-template-columns:1fr}
+      .intro__aside{min-height:320px}
+      .drinks__heading{display:block}
+      .drinks__heading .section-intro{margin-top:20px}
+      .idea__grid{grid-template-columns:1fr;margin-top:35px}
+      .idea__item,.idea__item+.idea__item{min-height:0;padding:22px 0;border-left:0;border-bottom:1px solid rgba(245,245,219,.25)}
+      .idea__item h3{margin:10px 0}
+      .archive__visual{max-width:520px}
+      .footer__top{display:block}
+      .footer__note{margin-top:32px}
+    }
+    @media(max-width:520px){
+      .hero{height:100vh;height:100svh}
+      .hero__sub{font-size:.98rem}
+      .hero__actions{gap:9px}
+      .hero__actions .button{padding-inline:17px;font-size:.8rem}
+      .hero__visual{margin-top:30px}
+      .drink-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;margin-right:-18px;padding-right:18px}
+      .drink{flex:0 0 min(82vw,330px);scroll-snap-align:start}
+      .drink__image{min-height:0}
+      .intro__aside{padding:28px}
+      .footer__bottom{margin-top:55px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+    }
+    .hero__visual img,.archive__visual img{mask-image:none;mix-blend-mode:normal}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="header__inner wrap">
+      <a class="logo" href="#top" aria-label="YŌJŌ home">YŌJŌ</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#story">The idea</a><a href="#drinks">The drinks</a><a href="#thinking">What we explored</a><a href="#archive">Project status</a>
+      </nav>
+      <a class="button button--solid header__action" href="#drinks">Explore the concept <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="#story">The idea</a><a href="#drinks">The drinks</a><a href="#thinking">What we explored</a><a href="#archive">Project status</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <span class="hero__leaf hero__leaf--a" aria-hidden="true">❧</span><span class="hero__leaf hero__leaf--b" aria-hidden="true">❧</span>
+      <div class="hero__inner wrap">
+        <span class="status">An earlier brand concept</span>
+        <h1 class="display" id="hero-title"><span>Matcha for</span><span>real life.</span></h1>
+        <p class="hero__sub">YŌJŌ imagined a more everyday way to enjoy matcha in India. Good drinks, less fuss, and a brand that did not take itself too seriously.</p>
+        <div class="hero__actions"><a class="button button--solid" href="#drinks">Explore the drinks <span aria-hidden="true">↓</span></a><a class="button button--outline" href="#story">Get to know YŌJŌ</a></div>
+        <div class="hero__visual"><img src="img/image-placeholder.svg" width="1536" height="1024" alt="YŌJŌ image placeholder" fetchpriority="high"></div>
+        <span class="hero__note scribble" aria-hidden="true">just add ice!</span>
+      </div>
+    </section>
+    <div class="marquee" aria-hidden="true"><div class="marquee__track"><span>YŌJŌ ✳ matcha for the everyday ✳ YŌJŌ ✳ matcha for the everyday ✳&nbsp;</span><span>YŌJŌ ✳ matcha for the everyday ✳ YŌJŌ ✳ matcha for the everyday ✳&nbsp;</span></div></div>
+    <section class="section intro" id="story" aria-labelledby="story-title">
+      <div class="wrap intro__grid">
+        <div class="intro__copy"><span class="eyebrow">Meet YŌJŌ</span><h2 class="display section-title" id="story-title">The good green stuff, without the big speech.</h2><p>Matcha can feel like something you need to study before you order. We wanted to imagine a version that fitted into an ordinary day.</p><p>This project explored a ready-to-drink matcha brand with a lighter voice, a recognisable visual identity, and room for familiar and playful flavours.</p></div>
+        <div class="intro__aside"><span class="scribble">a little less ceremony, a lot more everyday.</span><span class="eyebrow">The idea was simple: make the first sip feel easy.</span></div>
+      </div>
+    </section>
+    <section class="section drinks" id="drinks" aria-labelledby="drinks-title">
+      <div class="wrap">
+        <div class="drinks__heading"><div><span class="eyebrow">Flavour explorations</span><h2 class="display section-title" id="drinks-title">Pick your mood.</h2></div><p class="section-intro">Four directions we explored for the YŌJŌ world. These are concept visuals, not products currently for sale.</p></div>
+        <div class="drink-grid">
+          <article class="drink drink--strawberry"><div class="drink__image"><img src="img/image-placeholder.svg" width="500" height="500" alt="YŌJŌ image placeholder" loading="lazy"></div><div class="drink__meta">01 / Bright and fruity</div><h3>Strawberry matcha</h3><p>A fresh, colourful direction for someone trying matcha for the first time.</p></article>
+          <article class="drink drink--blueberry"><div class="drink__image"><img src="img/image-placeholder.svg" width="500" height="500" alt="YŌJŌ image placeholder" loading="lazy"></div><div class="drink__meta">02 / Berry and mellow</div><h3>Blueberry matcha</h3><p>A softer berry take that brings a little contrast to the green.</p></article>
+          <article class="drink drink--ube"><div class="drink__image"><img src="img/image-placeholder.svg" width="500" height="500" alt="YŌJŌ image placeholder" loading="lazy"></div><div class="drink__meta">03 / Rich and playful</div><h3>Ube matcha</h3><p>A purple and green pairing made for a more indulgent mood.</p></article>
+          <article class="drink drink--vanilla"><div class="drink__image"><img src="img/image-placeholder.svg" width="500" height="500" alt="YŌJŌ image placeholder" loading="lazy"></div><div class="drink__meta">04 / Calm and familiar</div><h3>Vanilla matcha</h3><p>A familiar flavour to make the idea of matcha feel less new.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section idea" id="thinking" aria-labelledby="thinking-title">
+      <div class="wrap"><div class="idea__top"><div><span class="eyebrow">Behind the concept</span><h2 class="display section-title" id="thinking-title">More than a green drink.</h2></div><p class="section-intro">YŌJŌ was a chance to think through the whole experience, from the first glimpse of a brand to the moment someone chooses a flavour.</p></div><div class="idea__grid"><div class="idea__item"><span>01</span><h3>A name with character</h3><p>A short, memorable wordmark and a friendly tone gave the idea its own personality.</p></div><div class="idea__item"><span>02</span><h3>A world to recognise</h3><p>Forest green, warm cream, playful lettering, and matcha imagery shaped a consistent visual language.</p></div><div class="idea__item"><span>03</span><h3>An easier first step</h3><p>The concept aimed to help people understand the drink without turning it into a lesson.</p></div></div></div>
+    </section>
+    <section class="section archive" id="archive" aria-labelledby="archive-title">
+      <div class="wrap archive__grid"><div class="archive__visual"><img src="img/image-placeholder.svg" width="1536" height="1024" alt="YŌJŌ image placeholder" loading="lazy"></div><div class="archive__copy"><span class="eyebrow">Where it stands</span><h2 class="display section-title" id="archive-title">A chapter we built, then moved on from.</h2><p>YŌJŌ was an earlier venture concept. The team later changed direction, but the brand and digital work remain part of that journey.</p><p>This site is an archive of the idea. It does not take orders or enquiries.</p><span class="archive__tag">Concept archive · 2026</span></div></div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><div class="footer__top"><div><span class="eyebrow">The YŌJŌ concept</span><p class="display footer__title">YŌJŌ</p></div><p class="footer__note">An exploration of everyday matcha, kept here as part of the story.</p></div><div class="footer__bottom"><span>© 2026 YŌJŌ · Concept archive</span><a href="#top">Back to top ↑</a><span>drinkyojo.com</span></div></div></footer>
+  <script>
+    const toggle=document.querySelector(".menu-toggle");
+    const menu=document.querySelector(".mobile-menu");
+    function closeMenu(){menu.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");toggle.setAttribute("aria-label","Open menu");document.body.classList.remove("menu-open")}
+    toggle.addEventListener("click",()=>{const open=toggle.getAttribute("aria-expanded")!=="true";menu.classList.toggle("is-open",open);toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Close menu":"Open menu");document.body.classList.toggle("menu-open",open)});
+    menu.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeMenu));
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu()});
+  </script>
+</body>
+</html>

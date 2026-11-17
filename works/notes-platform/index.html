@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142f24"><meta name="description" content="OM Notes is a digital study platform providing educational material for the subject of Office Management, with online checkout and a mobile-friendly reader — by Mohammed Sakarwala."><title>OM Notes — Digital Study Platform — Mohammed Sakarwala</title><link rel="stylesheet" href="/assets/site.css?v=20261117d"><link rel="stylesheet" href="/assets/notes-platform.css?v=20261117c"><script src="/assets/site.js?v=20261107l" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+  <header class="site-rail site-rail--light" aria-label="Global site header"><a class="rail-mark" href="/" aria-label="Back to home">MS<sup>TM</sup></a><button class="rail-menu" type="button" aria-label="Open menu" aria-controls="site-menu" aria-expanded="false"><svg class="rail-menu__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect y="15" width="32" height="2" fill="currentColor"></rect><rect data-menu-icon-bar="lower" x="0" y="22" width="32" height="2" fill="currentColor"></rect><rect data-menu-icon-bar="upper" x="0" y="8" width="32" height="2" fill="currentColor"></rect></svg></button><div class="rail-desktop"><span class="rail-edition">Folio — edition</span><a class="rail-name" href="/" aria-label="Back to home">Mohammed Sakarwala</a><span class="rail-year">© 2026</span></div></header>
+  <nav class="menu-overlay" id="site-menu" aria-label="Site navigation" aria-hidden="true"><div class="menu-head"><span class="eyebrow">Mohammed Sakarwala — Folio</span></div><div class="menu-links"><a href="/"><span>01.</span>Home</a><a href="/about/"><span>02.</span>About</a><a href="/works/"><span>03.</span>Works</a><a href="/#contact"><span>04.</span>Contact</a></div><div class="menu-foot"><span>Bengaluru, India</span><a href="https://www.linkedin.com/in/mohammed-sakarwala-825a503b8/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></nav>
+  <main class="page" id="main">
+    <header class="case-hero case-hero--notes" data-header-bg="#f4f8f3" data-header-text="#1f3a2d" data-header-border="#a8b8aa"><div class="case-hero__content"><a class="back-link" href="/works/">← Back to work</a><h1 class="serif">OM Notes<span class="case-hero__subtitle">Digital Study Platform</span></h1><div class="case-intro"><span class="eyebrow">Overview</span><p>A digital study platform providing educational material for the subject of Office Management. Students can explore OM-1 and OM-2 resources, purchase access, and study through a mobile-friendly reader.</p></div><div class="case-facts"><div><span>Year</span><span>2026</span></div><div><span>Role</span><span>Solo build</span></div><div><span>Stack</span><span>Supabase · Razorpay · Cloudflare Pages</span></div><div><span>Website</span><a href="https://om-notes.pages.dev/" target="_blank" rel="noopener noreferrer">Visit OM Notes ↗</a></div></div></div><div class="case-hero__visual case-hero__visual--notes"><img src="/assets/om-notes-project.png" width="1024" height="1024" alt="OM Notes website artwork for HSC Board Office Management"></div></header>
+
+    <section class="section case-body" data-header-bg="#eff3ee" data-header-text="#1f3a2d" data-header-border="#a8b8aa"><div class="wrap chapter"><div class="chapter-label"><span>The project</span>OM Notes</div><div>
+      <p class="section-lead" data-reveal>OM Notes brings educational material for Office Management into one place, including OM-1 and OM-2 study resources and past papers, with a reader designed for students on mobile and desktop.</p>
+      <div class="case-body__grid" data-reveal>
+        <h2>From landing page to live checkout.</h2>
+        <div>
+          <p>I built the landing page, Google sign-in, Razorpay checkout, and account experience. Supabase handles authentication, payment-related functions, and access checks; Cloudflare Pages hosts the site.</p>
+          <p>A central challenge was making a long set of notes usable on phones while keeping the original document in private storage. The reader loads prepared pages as they are needed, with navigation and zoom controls.</p>
+        </div>
+      </div>
+
+      <div class="notes-tech-grid" data-reveal>
+        <div class="notes-tech-item">
+          <span class="notes-tech-item__number serif">01</span>
+          <h3>A protected reader</h3>
+          <p>The current reader displays prepared page images and overlays account information as a deterrent to casual sharing. Authorized viewers can still save or capture what they see, so the design does not promise to prevent copying.</p>
+        </div>
+        <div class="notes-tech-item">
+          <span class="notes-tech-item__number serif">02</span>
+          <h3>Private source files</h3>
+          <p>The original PDF stays in private storage. Authenticated requests retrieve individual prepared pages through an Edge Function, rather than sending the original PDF or a storage signing key to the browser.</p>
+        </div>
+        <div class="notes-tech-item">
+          <span class="notes-tech-item__number serif">03</span>
+          <h3>Edge Function security pattern</h3>
+          <p>Supabase Edge Functions handle operations such as checking entitlement and processing payment events. A page request checks the signed-in account and paid access before returning content; the service role key stays server-side.</p>
+        </div>
+        <div class="notes-tech-item">
+          <span class="notes-tech-item__number serif">04</span>
+          <h3>A reader for long notes</h3>
+          <p>The current prepared notes contain 164 pages. The reader loads pages around the viewport on demand, with page navigation and zoom for desktop and mobile.</p>
+        </div>
+      </div>
+
+      <figure class="case-media notes-case-media">
+        <div class="notes-architecture" aria-label="System architecture overview">
+          <div class="notes-arch-row notes-arch-row--top">
+            <div class="notes-arch-node">Landing page<span>Cloudflare Pages</span></div>
+            <div class="notes-arch-arrow">→</div>
+            <div class="notes-arch-node">Google OAuth<span>Supabase Auth</span></div>
+            <div class="notes-arch-arrow">→</div>
+            <div class="notes-arch-node">Razorpay checkout<span>Online payment</span></div>
+          </div>
+          <div class="notes-arch-divider" aria-hidden="true">↓ on payment.captured</div>
+          <div class="notes-arch-row notes-arch-row--bottom">
+            <div class="notes-arch-node notes-arch-node--highlight">Edge Function<span>Validates webhook · grants access</span></div>
+            <div class="notes-arch-arrow">→</div>
+            <div class="notes-arch-node notes-arch-node--highlight">Edge Function<span>Checks access · serves pages</span></div>
+            <div class="notes-arch-arrow">→</div>
+            <div class="notes-arch-node">Notes reader<span>Prepared pages · lazy loading</span></div>
+          </div>
+        </div>
+        <figcaption>System architecture. The service role key stays server-side throughout.</figcaption>
+      </figure>
+
+      <div class="notes-callout" data-reveal>
+        <p class="notes-callout__label eyebrow">The approach</p>
+        <p class="notes-callout__text">Keep privileged operations server-side, check access on each page request, and make a long document practical to read on a phone.</p>
+      </div>
+    </div></div></section>
+
+    <section class="next-project" data-header-bg="#234636" data-header-text="#edf5ee" data-header-border="#54705f"><div class="wrap"><span class="eyebrow">Next project</span><div><a href="/works/chaska/">Chaska ↗</a></div></div></section>
+  </main>
+</body></html>

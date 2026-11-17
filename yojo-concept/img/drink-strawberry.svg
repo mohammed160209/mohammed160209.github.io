@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="strawberryBase" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#c1121f"/>
+      <stop offset="70%" stop-color="#e63946"/>
+      <stop offset="100%" stop-color="#ff4d6d"/>
+    </linearGradient>
+    <linearGradient id="milkLayer" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ff4d6d"/>
+      <stop offset="25%" stop-color="#fff8f0"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="matchaLayer" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#406a14"/>
+      <stop offset="60%" stop-color="#79A83E"/>
+      <stop offset="100%" stop-color="#9dce58"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Glass Shadow -->
+  <ellipse cx="200" cy="540" rx="90" ry="18" fill="rgba(0,0,0,0.25)" filter="url(#shadow)"/>
+
+  <!-- Glass Body Background -->
+  <path d="M120 120 L135 500 C137 520 150 530 200 530 C250 530 263 520 265 500 L280 120 Z" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+
+  <!-- Strawberry Layer Bottom -->
+  <path d="M133 460 C145 450 170 470 200 460 C230 450 255 470 267 460 L264 500 C262 516 250 526 200 526 C150 526 138 516 136 500 Z" fill="url(#strawberryBase)"/>
+  <!-- Strawberry bits -->
+  <circle cx="160" cy="485" r="4" fill="#a0000c" opacity="0.7"/>
+  <circle cx="220" cy="495" r="5" fill="#a0000c" opacity="0.7"/>
+  <circle cx="190" cy="475" r="3" fill="#a0000c" opacity="0.7"/>
+
+  <!-- Milk Middle Layer -->
+  <path d="M127 260 C150 250 180 270 200 260 C230 250 255 270 273 260 L267 460 C255 470 230 450 200 460 C170 470 145 450 133 460 Z" fill="url(#milkLayer)" opacity="0.95"/>
+
+  <!-- Matcha Top Layer -->
+  <path d="M120 120 L127 260 C145 250 170 270 200 260 C230 250 255 270 273 260 L280 120 Z" fill="url(#matchaLayer)"/>
+
+  <!-- Ice Cubes -->
+  <rect x="150" y="150" width="45" height="45" rx="8" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.7)" stroke-width="2" transform="rotate(12 172 172)"/>
+  <rect x="200" y="180" width="40" height="40" rx="8" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.7)" stroke-width="2" transform="rotate(-8 220 200)"/>
+  <rect x="160" y="230" width="38" height="38" rx="8" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="2" transform="rotate(18 179 249)"/>
+
+  <!-- Glass Rim Highlight -->
+  <ellipse cx="200" cy="120" rx="80" ry="12" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="3"/>
+  <ellipse cx="200" cy="120" rx="78" ry="10" fill="rgba(255,255,255,0.2)"/>
+
+  <!-- Glass Reflection Highlights -->
+  <path d="M130 135 L140 490" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M270 135 L262 490" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Glass Straw -->
+  <path d="M230 70 L210 510" stroke="rgba(255,255,255,0.6)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M230 70 L210 510" stroke="rgba(200,240,200,0.5)" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Condensation Drops -->
+  <circle cx="145" cy="200" r="3" fill="rgba(255,255,255,0.7)"/>
+  <circle cx="148" cy="220" r="2" fill="rgba(255,255,255,0.7)"/>
+  <circle cx="255" cy="300" r="3.5" fill="rgba(255,255,255,0.7)"/>
+  <circle cx="253" cy="325" r="2" fill="rgba(255,255,255,0.7)"/>
+</svg>

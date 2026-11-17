@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">YŌJŌ image placeholder</title>
+  <desc id="desc">A neutral placeholder for an image to be added later.</desc>
+  <rect width="1200" height="900" fill="#e3ece4"/>
+  <rect x="48" y="48" width="1104" height="804" fill="none" stroke="#a8b8aa" stroke-width="2"/>
+  <path d="M48 48 1152 852M1152 48 48 852" stroke="#c1d0c3" stroke-width="2"/>
+  <rect x="280" y="352" width="640" height="196" fill="#e3ece4"/>
+  <text x="600" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" fill="#1f3a2d">YŌJŌ</text>
+  <text x="600" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" letter-spacing="3" fill="#53695d">IMAGE PLACEHOLDER</text>
+</svg>
