@@ -263,3 +263,8 @@
 }
 .case-hero--notes .case-hero__visual{background:#142f24}
 .case-hero--notes .case-hero__visual img{object-fit:contain}
+
+/* The case study uses a text-only hero after removing its project artwork. */
+.case-hero--notes{grid-template-columns:minmax(0,1fr);min-height:0}
+.case-hero--notes .case-hero__content{width:min(100%,1100px);min-height:100svh;margin-inline:auto}
+@media(max-width:767px){.case-hero--notes .case-hero__content{min-height:0}}

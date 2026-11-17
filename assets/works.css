@@ -186,3 +186,12 @@
  .works-js .works-all__card.is-revealed .works-all__media,.works-js .works-all__card.is-revealed .works-all__media img{animation:none}
  .works-js .works-all__media img{transform:none}
 }
+
+/* Text-only third project card and study-platform detail overlay. */
+.works-all__card--text-only{align-self:end}
+.works-all__card--text-only .works-all__caption{border-top:1px solid #a8b8aa;padding-top:16px}
+.works-all__card--text-only h2 a{color:inherit;text-decoration:none}
+.works-all__card--text-only h2 a:hover,.works-all__card--text-only h2 a:focus-visible{text-decoration:underline;text-underline-offset:5px}
+[data-project-overlay="notes"]{grid-template-columns:minmax(0,1fr)}
+[data-project-overlay="notes"] .project-overlay__visual{display:none}
+@media(max-width:767px){.works-all__card--text-only{align-self:stretch}}
